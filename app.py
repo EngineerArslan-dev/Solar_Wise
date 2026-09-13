@@ -231,18 +231,44 @@ def subhead(text: str) -> None:
     st.markdown(f'<div class="sw-subhead">{text}</div>', unsafe_allow_html=True)
 
 
+def _resolve_groq_key() -> str:
+    """
+    Resolve GROQ_API_KEY from Streamlit secrets (st.secrets — the
+    intended source when deployed on Streamlit Community Cloud, set via
+    the app's Settings > Secrets panel) or a plain environment variable
+    (local runs, e.g. `export GROQ_API_KEY=...` or a .env file loaded
+    before launch). Never collected via a UI text field — the key must
+    live in one of these two places, not typed into the app.
+    """
+    key = os.environ.get("GROQ_API_KEY", "")
+    if key:
+        return key
+    try:
+        key = st.secrets.get("GROQ_API_KEY", "")  # type: ignore[union-attr]
+    except Exception:  # noqa: BLE001 — no secrets.toml present locally is expected
+        key = ""
+    if key:
+        os.environ["GROQ_API_KEY"] = key  # so generation/groq_pipeline.py picks it up unchanged
+    return key
+
+
+GROQ_KEY_CONFIGURED = bool(_resolve_groq_key())
+
 # ---------------------------------------------------------------------------
-# Sidebar — AI provider key (Groq, per PRD Section 7.1)
+# Sidebar — AI provider status (Groq, per PRD Section 7.1). The key itself
+# is never entered here — see _resolve_groq_key() above.
 # ---------------------------------------------------------------------------
 st.sidebar.markdown("### ⚡ AI Explanation (Groq)")
-st.sidebar.caption(
-    "Only needed for the 'Explain with AI' button and the Knowledge Base "
-    "Q&A panel. Leave blank to still see all engineering numbers — they "
-    "never depend on this."
-)
-groq_key_input = st.sidebar.text_input("GROQ_API_KEY", type="password")
-if groq_key_input:
-    os.environ["GROQ_API_KEY"] = groq_key_input
+if GROQ_KEY_CONFIGURED:
+    st.sidebar.success("Configured — AI explanation and Q&A are available.")
+else:
+    st.sidebar.warning(
+        "Not configured for this deployment. All engineering numbers "
+        "still work — only the 'Explain with AI' button and Knowledge "
+        "Base Q&A panel need it. Set GROQ_API_KEY in this app's "
+        "Streamlit Cloud Secrets (or as a local environment variable) "
+        "to enable them."
+    )
 
 st.sidebar.divider()
 st.sidebar.markdown("### 🇵🇰 About Solar Wise")
@@ -428,8 +454,11 @@ with tab_recommendation:
                 "recomputes or overrides the numbers above — only explains them."
             )
             if st.button("Explain This Recommendation"):
-                if not os.environ.get("GROQ_API_KEY"):
-                    st.error("Enter your GROQ_API_KEY in the sidebar first.")
+                if not GROQ_KEY_CONFIGURED:
+                    st.error(
+                        "AI explanation isn't configured for this deployment. "
+                        "Set GROQ_API_KEY in Streamlit Cloud Secrets to enable it."
+                    )
                 else:
                     from generation.groq_pipeline import answer_query_groq
                     kb = get_kb()
@@ -531,8 +560,11 @@ with tab_kb:
     category_filter = st.selectbox("Restrict to category (optional)", ["(all)"] + DOC_CATEGORIES)
 
     if st.button("Ask"):
-        if not os.environ.get("GROQ_API_KEY"):
-            st.error("Enter your GROQ_API_KEY in the sidebar first.")
+        if not GROQ_KEY_CONFIGURED:
+            st.error(
+                "AI explanation isn't configured for this deployment. "
+                "Set GROQ_API_KEY in Streamlit Cloud Secrets to enable it."
+            )
         elif not question.strip():
             st.error("Enter a question first.")
         else:
