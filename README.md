@@ -492,14 +492,6 @@ Electrical engineering, project leadership, system architecture and technical va
 ### Dr. Rabiah Badar — Technical & Research Lead
 Engineering methodology, research, validation and technical documentation.
 
-### M Qadeer Abbas — Engineering Developer
-Solar calculations, technical logic, datasets and testing.
-
-### M Hassan — AI/ML & Application Developer
-RAG, Groq integration, Python, AI orchestration and Streamlit development.
-
-### Saqlain Ali — Business/Product & Presentation Lead
-User requirements, business case, product positioning, commercialization and presentation.
 
 ---
 
