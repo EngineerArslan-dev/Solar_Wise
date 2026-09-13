@@ -1,0 +1,24 @@
+{
+  "_provenance": "Genuinely fetched live from the NASA POWER API (power.larc.nasa.gov) during this project's own Colab testing session, not estimated or synthesized. Query: monthly ALLSKY_SFC_SW_DWN, CLRSKY_SFC_SW_DWN, T2M, WS2M for Chakwal (lat 32.9328, lon 72.8630), community=RE, years 2018-2023.",
+  "city": "Chakwal",
+  "latitude": 32.9328,
+  "longitude": 72.8630,
+  "year_range": "2018-2023",
+  "monthly": {
+    "JAN": {"psh": 2.95, "clearsky_psh": 3.61, "temp_c": 9.8, "wind_ms": 1.5},
+    "FEB": {"psh": 3.99, "clearsky_psh": 4.59, "temp_c": 13.6, "wind_ms": 1.5},
+    "MAR": {"psh": 4.91, "clearsky_psh": 5.85, "temp_c": 18.4, "wind_ms": 1.7},
+    "APR": {"psh": 6.36, "clearsky_psh": 7.07, "temp_c": 24.3, "wind_ms": 1.7},
+    "MAY": {"psh": 6.92, "clearsky_psh": 7.67, "temp_c": 29.0, "wind_ms": 1.8},
+    "JUN": {"psh": 7.05, "clearsky_psh": 7.78, "temp_c": 32.7, "wind_ms": 1.6},
+    "JUL": {"psh": 5.66, "clearsky_psh": 7.06, "temp_c": 30.9, "wind_ms": 1.4},
+    "AUG": {"psh": 5.7, "clearsky_psh": 6.68, "temp_c": 29.7, "wind_ms": 1.2},
+    "SEP": {"psh": 5.39, "clearsky_psh": 5.91, "temp_c": 27.7, "wind_ms": 1.1},
+    "OCT": {"psh": 4.79, "clearsky_psh": 4.98, "temp_c": 22.3, "wind_ms": 1.2},
+    "NOV": {"psh": 3.46, "clearsky_psh": 3.83, "temp_c": 16.4, "wind_ms": 1.5},
+    "DEC": {"psh": 3.04, "clearsky_psh": 3.37, "temp_c": 11.7, "wind_ms": 1.4},
+    "ANN": {"psh": 5.02, "clearsky_psh": 5.7, "temp_c": 22.2, "wind_ms": 1.5}
+  },
+  "worst_month": "JAN",
+  "worst_month_psh": 2.95
+}

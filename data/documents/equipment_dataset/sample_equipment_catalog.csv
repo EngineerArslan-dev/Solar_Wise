@@ -1,0 +1,10 @@
+type,brand,model,rated_power_w,price_pkr,efficiency_pct,warranty_years,notes
+panel,Jinko,Tiger Neo 585W,585,26900,22.3,25,N-type bifacial monocrystalline
+panel,Longi,HiMO 6 590W,590,28500,22.8,25,N-type monofacial
+panel,Canadian Solar,HiKu7 550W,550,24000,21.4,25,P-type monofacial standard tier
+inverter,Growatt,SPH 5000,5000,180000,97.6,10,hybrid on/off-grid with battery input
+inverter,Huawei,SUN2000-5KTL,5000,210000,98.4,10,premium grid-tied on-grid
+inverter,Solis,S6-GR1P5K,5000,145000,97.2,5,budget-tier on-grid only
+battery,Dyness,PowerBox Plus 5.1kWh,,178500,,10,LiFePO4 51.2V modular
+battery,Pylontech,US5000 4.8kWh,,165000,,10,LiFePO4 48V stackable
+controller,Victron,SmartSolar MPPT 100/50,,32000,98,5,standalone MPPT for non-hybrid setups

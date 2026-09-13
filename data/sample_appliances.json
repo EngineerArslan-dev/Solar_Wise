@@ -1,0 +1,9 @@
+[
+  {"name": "LED bulb", "power_w": 10, "hours_per_day": 6, "quantity": 10},
+  {"name": "Ceiling fan", "power_w": 75, "hours_per_day": 10, "quantity": 4},
+  {"name": "Refrigerator", "power_w": 150, "hours_per_day": 7.2, "quantity": 1},
+  {"name": "LED TV", "power_w": 120, "hours_per_day": 5, "quantity": 1},
+  {"name": "Router/misc electronics", "power_w": 30, "hours_per_day": 24, "quantity": 1},
+  {"name": "Water pump", "power_w": 750, "hours_per_day": 1, "quantity": 1},
+  {"name": "Inverter AC (backup load)", "power_w": 1200, "hours_per_day": 4, "quantity": 1}
+]
